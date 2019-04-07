@@ -1,6 +1,5 @@
 #Comó puedo usar este sencillo, practico y funcional Login
 
-
 ##Pasos con respecto a la base de datos:
 
 - Crear una base de datos MySQL.
@@ -22,4 +21,4 @@ Correspondientes a los que usted este usando.
 
 Solo debe tener en cuenta que debe enviar al servidor, con el metodo POST, los datos ingresados
 por el usuario. El archivo verify-user.php espera recibir 2 variables "email" y "password".
-Este los procesara y enviara al usuario asu dashboard, de lo contrario devolvera un error.
+Este los procesara y redireccionara al usuario a su dashboard, de lo contrario devolvera un error.
