@@ -1,4 +1,4 @@
-# Comó puedo usar este sencillo, practico y funcional Login
+# Comó puedo usar este sencillo y funcional Login
 
 ## Pasos con respecto a la base de datos:
 
