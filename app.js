@@ -11,8 +11,6 @@ form.addEventListener('submit', function(event){
 
     //Obtenemos los datos ingresados en los campos del formulario
     var userData = new FormData(form);
-    console.log(userData.get('email'));
-    console.log(userData.get('password'));
 
     //Usamos el metodo Fetch API para enviar al servidor los datos de usuario a verifivar
     fetch('verify-user.php',{
@@ -21,11 +19,26 @@ form.addEventListener('submit', function(event){
     })
         .then( res => res.json())
         .then( data => {
-            console.log(data)
             if(data === 'logedin'){
-                response.innerHTML = "Logeado con exito";
+                showResponse(0, 'Logeado con exito');
             }else{
-                response.innerHTML = `Error: ${data}`
+                showResponse(1, data);
             }
         });
 });
+
+//Función para desplegar los mensages de error o exito usando el div con clase "response"
+function showResponse(goodOrBad, msg) {
+    if (goodOrBad == 0) {
+        response.className = "alert alert-success mt-5";
+    }else {
+        response.className = "alert alert-danger mt-5";
+    }
+    response.innerHTML = msg;
+    setTimeout(hideResponse, 3000)
+}
+
+//Función para ocultar las respuestas del servidor
+function hideResponse () {
+    response.className = "d-none";
+}
