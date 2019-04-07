@@ -39,26 +39,35 @@
 ?>
 
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
   <head>
-    <meta charset="utf-8">
-    <title>Registrar Nuevo Usuario</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
+
+      <title>Registrar Usuario</title>
   </head>
+
   <body>
-    <div class="container" style="margin-top: 100px;">
-      <div class="row justify-content-center">
-        <div class="col-md-5 col-md-offset-3" align="center">
-          <h1>Nuevo Usuario</h1><br><br>
-          <form>
-            <input class="form-control" type="text" name="email" placeholder="E-mail" id="email"><br>
-            <input class="form-control" type="password" name="password" placeholder="Contraseña" id="password"><br>
-            <input class="form-control" type="password" name="confirmPassword" placeholder="Confirmar Contraseña" id="confirmPassword"><br>
-            <button class="btn btn-primary form-control" type="submit">Registrar</button>
-            <div id="response"></div>
-          </form>
+
+    <div class="container">
+        <div class="row d-md-flex flex-column justify-content-center">
+            <div class="col-md-6 text-center">
+              <h2>Formulario para registro de usuario</h2>
+              <form>
+                <input class="form-control" type="text" name="email" placeholder="E-mail" id="email">
+                <input class="form-control" type="password" name="password" placeholder="Contraseña" id="password">
+                <input class="form-control" type="password" name="confirmPassword" placeholder="Confirmar Contraseña" id="confirmPassword">
+                <button class="btn btn-primary form-control" type="submit">Registrar</button>
+              </form>
+              <div id="response">
+                 <!-- Este div es para desplegar las respuestas que envie el servidor -->
+              </div>
         </div>
       </div>
     </div>
