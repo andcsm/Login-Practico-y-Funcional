@@ -1,53 +1,41 @@
 <?php
 
-        require "connection.php";
-        $conn = new Conexion();
+  require "connection.php";
+  $conn = new Conexion();
 
-        $email = $conn->real_escape_string($_POST['email']);
-        $password = $conn->real_escape_string($_POST['password']);
-        $confirmPassword = $conn->real_escape_string($_POST['confirmPassword']);
+  $email = $conn->real_escape_string($_POST['email']);
+  $password = $conn->real_escape_string($_POST['password']);
+  $confirmPassword = $conn->real_escape_string($_POST['confirmPassword']);
 
-        if ($email != '' and $password != '' and $confirmPassword != '') {
-          if (strlen($dane) < 10 or strlen($dane) > 15 or !is_numeric($dane)) {
-            exit('Ingrese un DANE valido');
-          } else {
-            $sql = $conn->query("SELECT id FROM instituciones WHERE dane = '$dane'");
-            if ($sql->num_rows > 0) {
-              if (strlen($name) < 4 or strlen($name) > 50) {
-                exit('El Nombre debe estar entre 4 y 50 caracteres');
-              } else {
-                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                  if ($password == $confirmPassword) {
-                    $sql = $conn->query("SELECT id FROM users WHERE email = '$email'");
-                    if ($sql->num_rows > 0) {
-                          exit('Este Email ya esta registrado');
-                    } else {
-                      $hash = password_hash($password, PASSWORD_BCRYPT);
-                      $sql = "INSERT INTO users (name, email, password) VALUES ('".$name."','".$email."', '".$hash."')";
-                      $conn->query($sql);
-                      $sql = $conn->query("SELECT id FROM users WHERE email = '$email'");
-                      while ($data = $sql->fetch_array()) {
-                        $id = $data['id'];
-                      }
-                      $sql = "INSERT INTO user_ie (user_id, dane_ie) VALUES ('".$id."','".$dane."')";
-                      $conn->query($sql);
-                      $conn->close();
-                      exit('1');
-                    }
-                  } else {
-                    exit('Las contraseñas no coinciden');
-                  }
-                } else {
-                  exit('Ingrese un Email valido');
-                }
-              }
-            } else {
-              exit('Este DANE no corresponde a ninguna sede');
-            }
-          }
-        } else {
-          exit('Por favor llene todos los campos del registro');
-        }
+  #Verificar que el email no este vacio
+  if ($email == "") {
+    $response = json_encode('Introduce una dirección de correo electrónico');
+    exit($response);
+  }
+
+  #Verificar que el email sea valido
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $response = json_encode('Dirección de correo electrónico invalido');
+    exit($response);
+  }
+
+  #Verificar que el password no este vacio
+  if ($password == "") {
+    $response = json_encode('Introducir una contraseña');
+    exit($response);
+  }
+
+  #Verificar que la confirmación del password no este vacio
+  if ($confirmPassword == "") {
+    $response = json_encode('Confirme su contraseña');
+    exit($response);
+  }
+
+  #Verificar que el password y el comfirmPassword sean iguales
+  if ($password !== $confirmPassword) {
+    $response = json_encode('Las contraseñas no coinciden');
+    exit($response);
+  }
 ?>
 
 
