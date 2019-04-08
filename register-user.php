@@ -47,8 +47,20 @@
       exit($response);
     }
 
-    $response = json_encode('Registed');
-    exit($response);
+    #Se validad si el email ya existe
+    $sql = $conn->query("SELECT id FROM users WHERE email = '$email'");
+      if ($sql->num_rows > 0) {
+        $response = json_encode('El Email ya esta registrado');
+        exit($response);
+      } else {
+        #Se encripta la contraseña y se inserta el nuevo usuario en la base de datos
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $sql = "INSERT INTO users (email, password) VALUES ('".$email."', '".$hash."')";
+        $conn->query($sql);
+        $conn->close();
+        $response = json_encode('Registed');
+        exit($response);
+      }
   }
 
   #Si no exite la variable se redireciona al usuario y se termina la ejecución del script
