@@ -2,6 +2,8 @@
 var form = document.getElementById('register-form');
 var response = document.getElementById('response');
 
+console.log(form[1]);
+
 // Monitoremos los eventos del formulario para saber cuendo hacen un submit
 form.addEventListener('submit', function(event){
     
@@ -10,7 +12,27 @@ form.addEventListener('submit', function(event){
 
     //Obtenemos los datos ingresados en los campos del formulario
     var userData = new FormData(form);
-    console.log(userData.get('submit'));
+
+    //Validamos el email
+    if (!validEmail(userData.get('email'))) {
+        borderedBox(0,1);
+        showResponse(1, 'Introduce una dirección de correo electrónico valida');
+        return false;
+    }
+
+    //Validmos la contraseña
+    if (emptyInput(userData.get('password'))) {
+        borderedBox(1,1);
+        showResponse(1, 'Introduce una dcontraseña');
+        return false;
+    }
+
+    //Validamos la confirmación de la contraseña
+    if (emptyInput(userData.get('confirmPassword'))) {
+        borderedBox(2,1);
+        showResponse(1, 'Confirma la contraseña');
+        return false;
+    }
 
     //Usamos el metodo Fetch API para enviar al servidor los datos de usuario a verifivar
     fetch('register-user.php',{
@@ -20,6 +42,7 @@ form.addEventListener('submit', function(event){
         .then( res => res.json())
         .then( data => {
             if(data === 'Registed'){
+                form.reset();
                 showResponse(0, 'Registrado con exito con exito');
             }else{
                 showResponse(1, data);
