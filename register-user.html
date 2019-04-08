@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
+
+      <title>Registrar Usuario</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+        <div class="row d-md-flex flex-column justify-content-center">
+            <div class="col-md-6 text-center">
+              <h2>Formulario para registro de usuario</h2>
+              <form id="register-form">
+                <input class="form-control my-3" type="text" name="email" placeholder="E-mail" id="email">
+                <input class="form-control my-3" type="password" name="password" placeholder="Contraseña" id="password">
+                <input class="form-control my-3" type="password" name="confirmPassword" placeholder="Confirmar Contraseña" id="confirmPassword">
+                <button class="btn btn-primary form-control" type="submit">Registrar</button>
+              </form>
+              <div id="response">
+                 <!-- Este div es para desplegar las respuestas que envie el servidor -->
+              </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="app.js"></script>
+    <script src="register.js"></script>
+  </body>
+</html>
