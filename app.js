@@ -14,3 +14,33 @@ function showResponse(goodOrBad, msg) {
 function hideResponse () {
     response.className = "d-none";
 }
+
+// Función para validar los emails
+function validEmail(email){
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(String(email).toLowerCase())) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+//Funcion para validar campos vacios
+function emptyInput(input) {
+	if (input == "") {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+//Funcion para colorear borde de campos de formulario
+function borderedBox(index, goodOrBad) {
+	if (goodOrBad == 0) {
+		form[index].className = "form-control my-3 border border-success";
+	} else {
+		form[index].className = "form-control my-3 border border-danger";
+	}
+}
