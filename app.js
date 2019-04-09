@@ -40,7 +40,9 @@ function emptyInput(input) {
 function borderedBox(index, goodOrBad) {
 	if (goodOrBad == 0) {
 		form[index].className = "form-control my-3 border border-success";
-	} else {
+	} else if (goodOrBad == 1) {
 		form[index].className = "form-control my-3 border border-danger";
+	} else {
+		form[index].className = "form-control my-3";
 	}
 }
