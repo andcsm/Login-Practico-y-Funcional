@@ -39,8 +39,8 @@
         if ($sql->num_rows == 1) {
             $data = $sql->fetch_array();
             if (password_verify($password, $data['password'])) {
+                session_start();
                 $_SESSION['email'] = $data['email'];
-                header('lodation: dashborad.php');
                 $response = json_encode('logedin');
                 exit($response);
             }else {
