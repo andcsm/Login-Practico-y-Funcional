@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if (!isset($_SESSION['id'])) {
+  if (!isset($_SESSION['email'])) {
     header('location: index.html');
     exit();
   }
