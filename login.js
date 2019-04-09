@@ -41,6 +41,7 @@ form.addEventListener('submit', function(event){
                 borderedBox(0,2);
                 borderedBox(1,2);
                 showResponse(0, 'Logeado con exito');
+                location.href ="dashboard.php";
             }else{
                 borderedBox(0,2);
                 borderedBox(1,2);
